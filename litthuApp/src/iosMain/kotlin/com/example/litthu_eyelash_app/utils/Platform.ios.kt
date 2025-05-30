@@ -1,4 +1,4 @@
-package com.example.litthu_eyelash_app
+package com.example.litthu_eyelash_app.utils
 
 import platform.UIKit.UIDevice
 

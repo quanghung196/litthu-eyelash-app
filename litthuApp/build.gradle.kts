@@ -42,10 +42,34 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
+            implementation(libs.compose.navigation)
+
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
+
+            implementation(libs.koin.core)
+
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.client.auth)
+
+            implementation(libs.okio)
+
+            implementation(libs.multiplatform.settings)
         }
 
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
+
+            implementation(libs.kotlinx.coroutines.android)
+
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
 
         commonTest.dependencies {
