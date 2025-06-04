@@ -1,17 +1,9 @@
 package com.example.litthu_eyelash_app.data.remote
 
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.request.post
-import io.ktor.http.ContentType
-import io.ktor.http.contentType
+import com.example.litthu_eyelash_app.data.model.auth.AuthResponseEntity
+import com.example.litthu_eyelash_app.domain.auth.entity.AuthRequestDomainEntity
 
-class LitthuApiService(private val client: HttpClient) {
+interface LitthuApiService {
 
-    suspend fun login(email: String, password: String) {
-        return client.post("https://api.example.com/login") {
-            contentType(ContentType.Application.Json)
-            //setBody(LoginRequest(email, password))
-        }.body()
-    }
+    suspend fun login(authRequest: AuthRequestDomainEntity): AuthResponseEntity
 }

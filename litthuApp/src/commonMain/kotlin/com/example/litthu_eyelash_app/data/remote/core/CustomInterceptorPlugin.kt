@@ -50,10 +50,8 @@ class CustomInterceptor(
     }
 }
 
-// Exception tùy chỉnh
 class UnauthorizedException(message: String) : Exception(message)
 
-// Hàm tiện ích để cài plugin
 fun HttpClientConfig<*>.installCustomInterceptor(configure: CustomInterceptorConfig.() -> Unit) {
     install(CustomInterceptor) {
         configure()

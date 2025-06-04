@@ -42,4 +42,5 @@ android {
 dependencies {
     implementation(project(":litthuApp"))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.koin.android)
 }

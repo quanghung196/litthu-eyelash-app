@@ -8,6 +8,7 @@ import com.example.litthu_eyelash_app.presentation.LitthuApp
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             LitthuApp()
         }
