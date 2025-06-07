@@ -2,7 +2,8 @@ package com.example.litthu_eyelash_app.data.remote
 
 object LitthuApiPath {
 
-    const val BASE_URL = "https://localhost:1906/"
+    const val BASE_URL = "10.0.2.2"
+    const val BASE_PORT = 1906
 
     object Auth {
         const val AUTH001 = "auth/register"

@@ -41,6 +41,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.litthu_eyelash_app.presentation.login.viewmodel.LoginViewModel
 import com.example.litthu_eyelash_app.presentation.widget.CommonOutlinedTextFieldWithLabel
 import com.example.litthu_eyelash_app.presentation.widget.rememberInject
+import com.example.litthu_eyelash_app.utils.getLanguageCode
 
 
 object LoginScreen : Screen {
@@ -156,7 +157,7 @@ object LoginScreen : Screen {
                 // Login Button
                 Button(
                     onClick = {
-                        // Handle login logic here
+                        viewModel.login()
                         println("Login clicked - Phone: $phoneNumber, Password: $password")
                     },
                     colors = ButtonDefaults.buttonColors(

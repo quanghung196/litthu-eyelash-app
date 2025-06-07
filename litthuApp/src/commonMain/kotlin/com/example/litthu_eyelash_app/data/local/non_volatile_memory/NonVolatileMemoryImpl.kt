@@ -6,6 +6,12 @@ class NonVolatileMemoryImpl(
     settings: Settings,
 ): NonVolatileMemory {
 
+    override var appLanguage: String by StringPreferenceDelegate(
+        settings = settings,
+        key = NonVolatileKey.APP_LANGUAGE,
+        defaultValue = ""
+    )
+
     override var accessToken: String by StringPreferenceDelegate(
         settings = settings,
         key = NonVolatileKey.ACCESS_TOKEN,

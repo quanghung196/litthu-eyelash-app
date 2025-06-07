@@ -1,6 +1,7 @@
 package com.example.litthu_eyelash_app.domain.core.usecase
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 
 interface UseCase<in P, R> {

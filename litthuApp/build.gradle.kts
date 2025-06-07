@@ -4,28 +4,14 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.multiplatform)
-
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.library)
-
-    // alias(libs.plugins.ksp)
 }
 
 android {
     compileSdk = 35
     namespace = "com.example.litthu_eyelash_app"
 }
-
-// KSP Tasks
-dependencies {
-    // add("kspCommonMainMetadata", libs.koin.ksp.compiler)
-}
-
-// Trigger Common Metadata Generation from Native tasks
-//project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
-//    if(name != "kspCommonMainKotlinMetadata") {
-//        dependsOn("kspCommonMainKotlinMetadata")
-//    }
-//}
 
 kotlin {
     androidTarget {
@@ -54,7 +40,6 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
-            // implementation(libs.compose.navigation)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
@@ -62,7 +47,10 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
-            // api(libs.koin.annotations)
+
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.transitions)
+            implementation(libs.voyager.koin)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
@@ -79,13 +67,13 @@ kotlin {
             implementation(libs.compose.ui.tooling)
             implementation(libs.compose.ui.tooling.preview)
 
-            implementation(libs.androidx.activity.compose)
+            api(libs.androidx.activity.compose)
 
             implementation(libs.kotlinx.coroutines.android)
 
             implementation(libs.ktor.client.okhttp)
 
-            implementation(libs.koin.android)
+            api(libs.koin.android)
         }
 
         iosMain.dependencies {

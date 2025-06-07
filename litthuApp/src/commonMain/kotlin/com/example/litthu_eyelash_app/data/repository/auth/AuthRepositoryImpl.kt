@@ -1,13 +1,13 @@
 package com.example.litthu_eyelash_app.data.repository.auth
 
 import com.example.litthu_eyelash_app.data.local.non_volatile_memory.NonVolatileMemory
-import com.example.litthu_eyelash_app.data.remote.LitthuApiServiceImpl
+import com.example.litthu_eyelash_app.data.remote.LitthuApiService
 import com.example.litthu_eyelash_app.domain.auth.entity.AuthRequestDomainEntity
 import com.example.litthu_eyelash_app.domain.auth.entity.AuthResponseDomainEntity
 import com.example.litthu_eyelash_app.domain.auth.repository.AuthRepository
 
 class AuthRepositoryImpl(
-    private val apiService: LitthuApiServiceImpl,
+    private val apiService: LitthuApiService,
     private val nonVolatileMemory: NonVolatileMemory,
 ) : AuthRepository {
 
@@ -18,6 +18,11 @@ class AuthRepositoryImpl(
         }
 
     override suspend fun login(authRequest: AuthRequestDomainEntity): AuthResponseDomainEntity {
-        return apiService.login(authRequest = authRequest).toDomain()
+        return try {
+            apiService.login(authRequest = authRequest).toDomain()
+        } catch (e: Exception) {
+            throw e
+        }
+
     }
 }

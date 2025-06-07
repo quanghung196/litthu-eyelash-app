@@ -13,9 +13,8 @@ class LoginViewModel(
     private val loginUseCase: LoginUseCase,
 ) : BaseViewModel<LoginViewState>(LoginViewState()) {
 
-    init {
-        viewModelScope.launch {
-            loginUseCase.invoke(AuthRequestDomainEntity("0903261998", "456123o451i"))
-        }
+
+    fun login() = viewModelScope.launch {
+        loginUseCase.invoke(AuthRequestDomainEntity("0903261998", "456123o451i"))
     }
 }
