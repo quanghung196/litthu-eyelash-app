@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ConnectionTimeoutException -->
+    <string name="connection_timeout_error_title">Kết nối đến máy chủ quá thời gian chờ</string>
+    <string name="connection_timeout_error_message">Vui lòng kiểm tra kết nối mạng và thử lại sau</string>
+
+    <!-- UnauthorizedException -->
+    <string name="unauthorized_error_title">Phiên đăng nhập đã hết hạn</string>
+    <string name="unauthorized_error_message">Vui lòng đăng nhập lại để tiếp tục sử dụng</string>
+
+    <!-- ServerErrorException -->
+    <string name="server_error_title">Máy chủ đang gặp sự cố</string>
+    <string name="server_error_message">Vui lòng thử lại sau hoặc liên hệ hỗ trợ</string>
+
+    <!-- UnknownException -->
+    <string name="unknown_error_title">Đã xảy ra lỗi không xác định</string>
+    <string name="unknown_error_message">Vui lòng thử lại hoặc liên hệ hỗ trợ kỹ thuật</string>
+
+    <!-- LitthuException -->
+    <string name="F_LOGIN_001_title">Login failed</string>
+    <string name="F_LOGIN_001_message">Mật khẩu không chính xác, vui lòng thử lại</string>
+
+    <string name="F_LOGIN_002_title">Login failed</string>
+    <string name="F_LOGIN_002_message">Số điện thoại hiện chưa được đăng ký</string>
+</resources>

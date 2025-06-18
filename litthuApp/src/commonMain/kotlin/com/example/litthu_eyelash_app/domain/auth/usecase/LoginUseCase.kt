@@ -9,10 +9,12 @@ interface LoginUseCase : UseCase<AuthRequestDomainEntity, Unit>
 class LoginUseCaseImpl(
     private val authRepository: AuthRepository,
     private val getSetAccessTokenUseCase: GetSetAccessTokenUseCase,
+    private val getSetRefreshTokenUseCase: GetSetRefreshTokenUseCase,
 ) : LoginUseCase {
 
     override suspend fun execute(parameters: AuthRequestDomainEntity) {
         val result = authRepository.login(authRequest = parameters)
         getSetAccessTokenUseCase.set(result.accessToken)
+        getSetRefreshTokenUseCase.set(result.refreshToken)
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ConnectionTimeoutException -->
+    <string name="connection_timeout_error_title">Connection to server timed out</string>
+    <string name="connection_timeout_error_message">Please check your network connection and try again</string>
+
+    <!-- UnauthorizedException -->
+    <string name="unauthorized_error_title">Your session has expired</string>
+    <string name="unauthorized_error_message">Please login again to continue</string>
+
+    <!-- ServerErrorException -->
+    <string name="server_error_title">Server is experiencing issues</string>
+    <string name="server_error_message">Please try again later or contact support</string>
+
+    <!-- UnknownException -->
+    <string name="unknown_error_title">An unknown error occurred</string>
+    <string name="unknown_error_message">Please try again or contact technical support</string>
+
+    <!-- LitthuException -->
+    <string name="F_LOGIN_001_title">Login failed</string>
+    <string name="F_LOGIN_001_message">Password incorrect, please try again</string>
+
+    <string name="F_LOGIN_002_title">Login failed</string>
+    <string name="F_LOGIN_002_message">Phone number has not been registered yet</string>
+</resources>

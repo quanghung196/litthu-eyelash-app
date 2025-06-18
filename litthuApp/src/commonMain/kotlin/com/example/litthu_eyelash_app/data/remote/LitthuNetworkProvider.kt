@@ -2,7 +2,6 @@ package com.example.litthu_eyelash_app.data.remote
 
 import com.example.litthu_eyelash_app.data.local.non_volatile_memory.NonVolatileMemory
 import com.example.litthu_eyelash_app.data.remote.core.ApiHelper
-import com.example.litthu_eyelash_app.domain.auth.usecase.GetSetAccessTokenUseCase
 import io.ktor.client.HttpClient
 
 interface LitthuNetworkProvider {
@@ -17,7 +16,7 @@ class LitthuNetworkProviderImpl(
         get() = createHttpClient()
 
     private fun createHttpClient(): HttpClient {
-        val accessToken = nonVolatileMemory.accessToken
+        val accessToken = nonVolatileMemory.accessToken.ifEmpty { null }
         return ApiHelper.createHttpClient(accessToken = accessToken)
     }
 }

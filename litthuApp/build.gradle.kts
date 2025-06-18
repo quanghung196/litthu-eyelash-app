@@ -40,6 +40,9 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
+            implementation(libs.compose.resources)
+            implementation(libs.compose.material.icons.core)
+            implementation(libs.compose.material.icons.extended)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
@@ -68,6 +71,7 @@ kotlin {
             implementation(libs.compose.ui.tooling.preview)
 
             api(libs.androidx.activity.compose)
+            api(libs.androidx.core.splash.screen)
 
             implementation(libs.kotlinx.coroutines.android)
 

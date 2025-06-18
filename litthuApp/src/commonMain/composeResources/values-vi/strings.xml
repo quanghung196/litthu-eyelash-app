@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login Screen -->
+    <string name="app_name">Litthu Eyelashes</string>
+    <string name="app_description">Beauty &amp; Elegance</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="phone_number_hint">Nhập số điện thoại</string>
+    <string name="password">Mật khẩu</string>
+    <string name="password_hint">Nhập mật khẩu</string>
+    <string name="login">Đăng nhập</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="do_not_have_account">Chưa có tài khoản? </string>
+    <string name="signup">Đăng ký</string>
+    <string name="copyright">© 2025 Litthu Eyelashes. All rights reserved.\nDeveloped by @kwanghunggg</string>
+    <string name="logging_in">Đang đăng nhập...</string>
+
+    <!-- Dialog Button -->
+    <string name="close">Đóng</string>
+    <string name="retry">Thử lại</string>
+</resources>

@@ -4,6 +4,7 @@ import com.example.litthu_eyelash_app.data.remote.LitthuApiService
 import com.example.litthu_eyelash_app.data.remote.LitthuApiServiceImpl
 import com.example.litthu_eyelash_app.data.remote.LitthuNetworkProvider
 import com.example.litthu_eyelash_app.data.remote.LitthuNetworkProviderImpl
+import com.example.litthu_eyelash_app.data.remote.SafeCallApi
 import org.koin.dsl.module
 
 val remoteDataModule = module {
@@ -15,6 +16,12 @@ val remoteDataModule = module {
     single<LitthuApiService> {
         LitthuApiServiceImpl(
             networkProvider = get(),
+        )
+    }
+
+    single<SafeCallApi> {
+        SafeCallApi(
+            authRepository = get(),
         )
     }
 }

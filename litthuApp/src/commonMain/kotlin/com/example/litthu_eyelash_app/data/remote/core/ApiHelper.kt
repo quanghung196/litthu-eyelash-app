@@ -1,9 +1,10 @@
 package com.example.litthu_eyelash_app.data.remote.core
 
-import com.example.litthu_eyelash_app.data.remote.LitthuApiPath
+import com.example.litthu_eyelash_app.data.remote.LitthuApiConfig
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
@@ -34,16 +35,18 @@ object ApiHelper {
             install(DefaultRequest) {
                 url {
                     protocol = URLProtocol.HTTP
-                    host = LitthuApiPath.BASE_URL
-                    port = LitthuApiPath.BASE_PORT
+                    host = LitthuApiConfig.BASE_URL
+                    port = LitthuApiConfig.BASE_PORT
                 }
                 contentType(ContentType.Application.Json)
             }
+            install(HttpTimeout) {
+                connectTimeoutMillis = LitthuApiConfig.Timeout.CONNECT_TIMEOUT
+                socketTimeoutMillis = LitthuApiConfig.Timeout.SOCKET_TIMEOUT
+                requestTimeoutMillis = LitthuApiConfig.Timeout.REQUEST_TIMEOUT
+            }
             installCustomInterceptor {
                 this.accessToken = accessToken
-                onUnauthorized = {
-                    println("Unauthorized, need to refresh token")
-                }
             }
         }
     }

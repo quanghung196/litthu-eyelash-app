@@ -17,12 +17,26 @@ class AuthRepositoryImpl(
             nonVolatileMemory.accessToken = value
         }
 
-    override suspend fun login(authRequest: AuthRequestDomainEntity): AuthResponseDomainEntity {
-        return try {
-            apiService.login(authRequest = authRequest).toDomain()
-        } catch (e: Exception) {
-            throw e
+    override var refreshToken: String
+        get() = nonVolatileMemory.accessToken
+        set(value) {
+            nonVolatileMemory.accessToken = value
         }
 
+    override suspend fun clearAccessToken() {
+        nonVolatileMemory.clearAccessToken()
+    }
+
+    override suspend fun clearToken() {
+        nonVolatileMemory.clearToken()
+    }
+
+    override suspend fun login(authRequest: AuthRequestDomainEntity): AuthResponseDomainEntity {
+        return apiService.login(authRequest = authRequest).toDomain()
+
+    }
+
+    override suspend fun refreshToken(refreshToken: String): AuthResponseDomainEntity {
+        return apiService.refreshToken(refreshToken = refreshToken).toDomain()
     }
 }

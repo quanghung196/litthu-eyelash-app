@@ -2,9 +2,8 @@ package com.example.litthu_eyelash_app.presentation.core
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class StateHolderImpl<T : Any>(initializeState: T) : StateHolder<T> {
@@ -19,8 +18,10 @@ class StateHolderImpl<T : Any>(initializeState: T) : StateHolder<T> {
     override fun <S> observe(scope: CoroutineScope, selector: (T) -> S, observer: (S) -> Unit) {
         scope.launch {
             stateFlow.map(selector)
-                .stateIn(scope)
-                .collect()
+                .distinctUntilChanged()
+                .collect { selectedValue ->
+                    observer(selectedValue)
+                }
         }
     }
 

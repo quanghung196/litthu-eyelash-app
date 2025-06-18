@@ -1,9 +1,15 @@
 package com.example.litthu_eyelash_app.data.remote
 
-object LitthuApiPath {
+object LitthuApiConfig {
 
     const val BASE_URL = "10.0.2.2"
     const val BASE_PORT = 1906
+
+    object Timeout {
+        const val CONNECT_TIMEOUT = 15000L
+        const val SOCKET_TIMEOUT = 15000L
+        const val REQUEST_TIMEOUT = 30000L
+    }
 
     object Auth {
         const val AUTH001 = "auth/register"

@@ -6,4 +6,6 @@ import com.example.litthu_eyelash_app.domain.auth.entity.AuthRequestDomainEntity
 interface LitthuApiService {
 
     suspend fun login(authRequest: AuthRequestDomainEntity): AuthResponseEntity
+
+    suspend fun refreshToken(refreshToken: String): AuthResponseEntity
 }

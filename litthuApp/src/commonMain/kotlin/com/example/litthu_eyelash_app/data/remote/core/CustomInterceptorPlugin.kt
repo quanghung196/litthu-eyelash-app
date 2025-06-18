@@ -1,56 +1,100 @@
 package com.example.litthu_eyelash_app.data.remote.core
 
+import com.example.litthu_eyelash_app.data.model.BaseResponseEntity
+import com.example.litthu_eyelash_app.data.remote.LitthuNetworkError
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
+import io.ktor.client.call.body
+import io.ktor.client.network.sockets.ConnectTimeoutException
+import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.HttpClientPlugin
+import io.ktor.client.plugins.HttpRequestTimeoutException
+import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.HttpRequestPipeline
 import io.ktor.client.request.header
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.HttpResponsePipeline
-import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
 import io.ktor.util.AttributeKey
 
 class CustomInterceptorConfig {
     var accessToken: String? = null
-    var onUnauthorized: suspend () -> Unit = {}
 }
 
 class CustomInterceptor(
     private val accessToken: String? = null,
-    private val onUnauthorized: suspend () -> Unit
 ) {
     companion object Plugin : HttpClientPlugin<CustomInterceptorConfig, CustomInterceptor> {
-        override val key: AttributeKey<CustomInterceptor> = AttributeKey("CustomInterceptor")
+        private const val AUTHORIZATION_KEY = "Authorization"
+        private const val AUTHORIZATION_VALUE_PREFIX = "Bearer"
+
+        private const val ATTRIBUTE_KEY = "CustomInterceptor"
+
+        private const val RESULT_OK = "OK"
+
+        override val key: AttributeKey<CustomInterceptor> = AttributeKey(ATTRIBUTE_KEY)
 
         override fun prepare(block: CustomInterceptorConfig.() -> Unit): CustomInterceptor {
             val config = CustomInterceptorConfig().apply(block)
-            return CustomInterceptor(config.accessToken, config.onUnauthorized)
+            return CustomInterceptor(config.accessToken)
         }
 
         override fun install(plugin: CustomInterceptor, scope: HttpClient) {
             // Before request
             scope.requestPipeline.intercept(HttpRequestPipeline.Before) {
-                plugin.accessToken?.let { token ->
-                    context.header("Authorization", "Bearer $token")
+                try {
+                    plugin.accessToken?.let { token ->
+                        context.header(AUTHORIZATION_KEY, "$AUTHORIZATION_VALUE_PREFIX $token")
+                    }
+                    proceed()
+                } catch (e: Exception) {
+                    throw when (e) {
+                        is HttpRequestTimeoutException,
+                        is SocketTimeoutException,
+                        is ConnectTimeoutException -> {
+                            LitthuNetworkError.ConnectionTimeoutException
+                        }
+
+                        else -> {
+                            LitthuNetworkError.UnknownException
+                        }
+                    }
                 }
-                proceed()
             }
 
             // After response
             scope.responsePipeline.intercept(HttpResponsePipeline.Receive) { container ->
-                val response = container.response
-                if (response is HttpResponse && response.status == HttpStatusCode.Unauthorized) {
-                    plugin.onUnauthorized()
-                    throw UnauthorizedException("Unauthorized: ${response.bodyAsText()}")
+                try {
+                    val response = container.response
+                    if (response is HttpResponse &&
+                        response.status == HttpStatusCode.OK &&
+                        (response.body() as? BaseResponseEntity)?.result != RESULT_OK) {
+                        throw LitthuNetworkError.LitthuErrorException(
+                            errorResponse = response.body()
+                        )
+                    }
+                    proceed()
+                } catch (e: Exception) {
+                    throw when (e) {
+                        is HttpRequestTimeoutException,
+                        is SocketTimeoutException,
+                        is ConnectTimeoutException -> {
+                            LitthuNetworkError.ConnectionTimeoutException
+                        }
+
+                        is ServerResponseException -> {
+                            LitthuNetworkError.ServerErrorException
+                        }
+
+                        else -> {
+                            LitthuNetworkError.UnknownException
+                        }
+                    }
                 }
-                proceed()
             }
         }
     }
 }
-
-class UnauthorizedException(message: String) : Exception(message)
 
 fun HttpClientConfig<*>.installCustomInterceptor(configure: CustomInterceptorConfig.() -> Unit) {
     install(CustomInterceptor) {
