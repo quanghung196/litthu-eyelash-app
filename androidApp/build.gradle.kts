@@ -37,9 +37,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.8"
     }
+    androidResources {
+        @Suppress("UnstableApiUsage")
+        localeFilters.add("en")
+    }
 }
 
 dependencies {
     implementation(project(":litthuApp"))
-    implementation(libs.androidx.activity.compose)
 }

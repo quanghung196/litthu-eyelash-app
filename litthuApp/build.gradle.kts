@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.multiplatform)
-
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.android.library)
 }
 
@@ -23,7 +23,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -38,16 +38,22 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.compose.ui)
-            implementation(libs.compose.ui.tooling)
-            implementation(libs.compose.ui.tooling.preview)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
-            implementation(libs.compose.navigation)
+            implementation(libs.compose.resources)
+            implementation(libs.compose.material.icons.core)
+            implementation(libs.compose.material.icons.extended)
 
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.kotlinx.datetime)
 
             implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.transitions)
+            implementation(libs.voyager.koin)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
@@ -57,15 +63,21 @@ kotlin {
 
             implementation(libs.okio)
 
-            implementation(libs.multiplatform.settings)
+            implementation(libs.settings.multiplatform)
         }
 
         androidMain.dependencies {
-            implementation(libs.androidx.activity.compose)
+            implementation(libs.compose.ui.tooling)
+            implementation(libs.compose.ui.tooling.preview)
+
+            api(libs.androidx.activity.compose)
+            api(libs.androidx.core.splash.screen)
 
             implementation(libs.kotlinx.coroutines.android)
 
             implementation(libs.ktor.client.okhttp)
+
+            api(libs.koin.android)
         }
 
         iosMain.dependencies {

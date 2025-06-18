@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login Screen -->
+    <string name="app_name">Litthu Eyelashes</string>
+    <string name="app_description">Beauty &amp; Elegance</string>
+    <string name="phone_number">Phone number</string>
+    <string name="phone_number_hint">Enter phone number</string>
+    <string name="password">Password</string>
+    <string name="password_hint">Enter password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="do_not_have_account">Don't have an account? </string>
+    <string name="signup">Signup</string>
+    <string name="copyright">© 2025 Litthu Eyelashes. All rights reserved.\nDeveloped by @kwanghunggg</string>
+    <string name="logging_in">Logging in...</string>
+
+    <!-- Dialog Button -->
+    <string name="close">Close</string>
+    <string name="retry">Retry</string>
+</resources>
