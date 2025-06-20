@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,6 +44,7 @@ import com.example.litthu_eyelash_app.presentation.theme.AppColors
 import com.example.litthu_eyelash_app.presentation.theme.AppDimens
 import com.example.litthu_eyelash_app.presentation.theme.AppTextSize
 import com.example.litthu_eyelash_app.presentation.widget.AppSpace
+import com.example.litthu_eyelash_app.presentation.widget.AppSpace.ColumnSafeSpace
 import com.example.litthu_eyelash_app.presentation.widget.CommonLoadingDialog
 import com.example.litthu_eyelash_app.presentation.widget.CommonOutlinedTextFieldWithLabel
 import com.example.litthu_eyelash_app.presentation.widget.LitthuErrorDialog
@@ -118,159 +117,153 @@ fun LoginScreenContent(
         contentScale = ContentScale.FillBounds,
     )
 
-    Box(
+    ColumnSafeSpace(
         modifier = Modifier
-            .fillMaxSize()
             .pointerInput(Unit) {
                 detectTapGestures {
                     if (checkIfAnyTextFieldInColumnIsFocused()) {
                         keyboard.hideKeyboard()
                     }
                 }
-            },
+            }
+            .padding(AppDimens.DIMEN_24),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
     ) {
-        Column(
+        AppSpace.VerticalSpace.Space60()
+
+        Text(
+            text = stringResource(Res.string.app_name),
+            color = AppColors.Gray.DARK,
+            fontSize = AppTextSize.TEXT_SIZE_40,
+            letterSpacing = AppTextSize.TEXT_SIZE_2,
+            fontFamily = FontFamily(Font(Res.font.GreatVibes)),
+            fontWeight = FontWeight.SemiBold,
+        )
+
+        AppSpace.VerticalSpace.Space4()
+
+        Text(
+            text = stringResource(Res.string.app_description),
+            fontSize = AppTextSize.TEXT_SIZE_14,
+            fontWeight = FontWeight.SemiBold,
+            color = AppColors.Gray.DARK,
+            fontFamily = FontFamily(Font(Res.font.GreatVibes)),
+            letterSpacing = AppTextSize.TEXT_SIZE_1,
+        )
+
+        AppSpace.VerticalSpace.Space24()
+
+        CommonOutlinedTextFieldWithLabel(
+            label = stringResource(Res.string.phone_number),
+            value = phoneNumber,
+            hint = stringResource(Res.string.phone_number_hint),
+            onValueChange = { value ->
+                phoneNumber = value
+            },
+            keyboardType = KeyboardType.Phone,
+            onFocusChanged = { isFocus ->
+                emailFocused = isFocus
+            },
+        )
+
+        AppSpace.VerticalSpace.Space24()
+
+        CommonOutlinedTextFieldWithLabel(
+            label = stringResource(Res.string.password),
+            value = password,
+            hint = stringResource(Res.string.password_hint),
+            onValueChange = { value ->
+                password = value
+            },
+            trailingIcon = {
+                IconButton(
+                    onClick = { isPasswordVisible = !isPasswordVisible }
+                ) {
+                    Icon(
+                        imageVector = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                        contentDescription = null,
+                        tint = if (passwordFocused) AppColors.White.TRANSPARENT_80 else AppColors.White.TRANSPARENT_50
+                    )
+                }
+            },
+            visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            keyboardType = KeyboardType.Password,
+            imeAction = ImeAction.Done,
+            onImeAction = {
+                if (validateLoginInput()) {
+                    login()
+                }
+            },
+            onFocusChanged = { isFocus ->
+                passwordFocused = isFocus
+            },
+        )
+
+        AppSpace.VerticalSpace.Space24()
+
+        Button(
+            onClick = {
+                login()
+            },
+            enabled = validateLoginInput(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = AppColors.White.TRANSPARENT_90,
+                contentColor = Color.DarkGray,
+                disabledContainerColor = AppColors.White.TRANSPARENT_60
+            ),
+            shape = RoundedCornerShape(AppDimens.DIMEN_16),
             modifier = Modifier
-                .fillMaxSize()
-                .padding(AppDimens.DIMEN_24),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+                .fillMaxWidth()
+                .height(AppDimens.DIMEN_48)
         ) {
-            AppSpace.VerticalSpace.Space60()
-
             Text(
-                text = stringResource(Res.string.app_name),
-                color = AppColors.Gray.DARK,
-                fontSize = AppTextSize.TEXT_SIZE_40,
-                letterSpacing = AppTextSize.TEXT_SIZE_2,
-                fontFamily = FontFamily(Font(Res.font.GreatVibes)),
+                text = stringResource(Res.string.login),
                 fontWeight = FontWeight.SemiBold,
-            )
-
-            AppSpace.VerticalSpace.Space4()
-
-            Text(
-                text = stringResource(Res.string.app_description),
-                fontSize = AppTextSize.TEXT_SIZE_14,
-                fontWeight = FontWeight.SemiBold,
-                color = AppColors.Gray.DARK,
-                fontFamily = FontFamily(Font(Res.font.GreatVibes)),
+                fontSize = AppTextSize.TEXT_SIZE_16,
                 letterSpacing = AppTextSize.TEXT_SIZE_1,
             )
+        }
 
-            AppSpace.VerticalSpace.Space24()
+        AppSpace.VerticalSpace.Space20()
 
-            CommonOutlinedTextFieldWithLabel(
-                label = stringResource(Res.string.phone_number),
-                value = phoneNumber,
-                hint = stringResource(Res.string.phone_number_hint),
-                onValueChange = { value ->
-                    phoneNumber = value
-                },
-                keyboardType = KeyboardType.Phone,
-                onFocusChanged = { isFocus ->
-                    emailFocused = isFocus
-                },
-            )
-
-            AppSpace.VerticalSpace.Space24()
-
-            CommonOutlinedTextFieldWithLabel(
-                label = stringResource(Res.string.password),
-                value = password,
-                hint = stringResource(Res.string.password_hint),
-                onValueChange = { value ->
-                    password = value
-                },
-                trailingIcon = {
-                    IconButton(
-                        onClick = { isPasswordVisible = !isPasswordVisible }
-                    ) {
-                        Icon(
-                            imageVector = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                            contentDescription = null,
-                            tint = if (passwordFocused) AppColors.White.TRANSPARENT_80 else AppColors.White.TRANSPARENT_50
-                        )
-                    }
-                },
-                visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                keyboardType = KeyboardType.Password,
-                imeAction = ImeAction.Done,
-                onImeAction = {
-                    if (validateLoginInput()) {
-                        login()
-                    }
-                },
-                onFocusChanged = { isFocus ->
-                    passwordFocused = isFocus
-                },
-            )
-
-            AppSpace.VerticalSpace.Space24()
-
-            Button(
-                onClick = {
-                    login()
-                },
-                enabled = validateLoginInput(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = AppColors.White.TRANSPARENT_90,
-                    contentColor = Color.DarkGray,
-                    disabledContainerColor = AppColors.White.TRANSPARENT_60
-                ),
-                shape = RoundedCornerShape(AppDimens.DIMEN_16),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(AppDimens.DIMEN_48)
-            ) {
-                Text(
-                    text = stringResource(Res.string.login),
-                    fontWeight = FontWeight.SemiBold,
-                    fontSize = AppTextSize.TEXT_SIZE_16,
-                    letterSpacing = AppTextSize.TEXT_SIZE_1,
-                )
+        Text(
+            text = stringResource(Res.string.forgot_password),
+            fontSize = AppTextSize.TEXT_SIZE_14,
+            color = AppColors.White.TRANSPARENT_80,
+            modifier = Modifier.clickable {
+                // TODO
             }
+        )
 
-            AppSpace.VerticalSpace.Space20()
+        AppSpace.VerticalSpace.Space24()
 
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                text = stringResource(Res.string.forgot_password),
+                text = stringResource(Res.string.do_not_have_account),
+                fontSize = AppTextSize.TEXT_SIZE_12,
+                color = AppColors.White.TRANSPARENT_70,
+            )
+            Text(
+                text = stringResource(Res.string.signup),
                 fontSize = AppTextSize.TEXT_SIZE_14,
-                color = AppColors.White.TRANSPARENT_80,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
                 modifier = Modifier.clickable {
                     // TODO
                 }
             )
-
-            AppSpace.VerticalSpace.Space24()
-
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = stringResource(Res.string.do_not_have_account),
-                    fontSize = AppTextSize.TEXT_SIZE_12,
-                    color = AppColors.White.TRANSPARENT_70,
-                )
-                Text(
-                    text = stringResource(Res.string.signup),
-                    fontSize = AppTextSize.TEXT_SIZE_14,
-                    fontWeight = FontWeight.SemiBold,
-                    color = Color.White,
-                    modifier = Modifier.clickable {
-                        // TODO
-                    }
-                )
-            }
-
-            Spacer(modifier = Modifier.weight(1f))
-
-            Text(
-                lineHeight = AppTextSize.TEXT_SIZE_16,
-                text = stringResource(Res.string.copyright),
-                fontSize = AppTextSize.TEXT_SIZE_12,
-                color = AppColors.White.TRANSPARENT_80,
-                textAlign = TextAlign.Center,
-            )
         }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Text(
+            lineHeight = AppTextSize.TEXT_SIZE_16,
+            text = stringResource(Res.string.copyright),
+            fontSize = AppTextSize.TEXT_SIZE_12,
+            color = AppColors.White.TRANSPARENT_80,
+            textAlign = TextAlign.Center,
+        )
     }
 
     if (loadingState == LoadingState.SHOW_LOADING) {

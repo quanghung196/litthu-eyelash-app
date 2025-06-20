@@ -2,7 +2,6 @@ package com.example.litthu_eyelash_app.presentation.splash.viewmodel
 
 import com.example.litthu_eyelash_app.domain.auth.usecase.GetSetAccessTokenUseCase
 import com.example.litthu_eyelash_app.presentation.core.BaseViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 data class SplashViewState(
@@ -20,7 +19,6 @@ class SplashViewModel(
 
     private fun initializeAppConfig() = viewModelScope.launch {
         checkLoginState()
-        delay(3000)
         dispatchState {
             copy(isConfigLoaded = true)
         }

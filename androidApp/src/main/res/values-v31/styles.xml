@@ -1,8 +1,7 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Material.NoActionBar" />
-
-    <style name="Litthu.SplashScreen" parent="AppTheme">
+    <!-- API 31+ theme -->
+    <style name="Theme.LitthuEyelash.Api31" parent="Theme.LitthuEyelash">
         <item name="android:windowSplashScreenBackground">@color/splash_bg_color</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_bg</item>
         <item name="android:windowSplashScreenAnimationDuration">300</item>
