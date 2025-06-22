@@ -4,7 +4,6 @@ import com.example.litthu_eyelash_app.data.model.BaseResponseEntity
 import com.example.litthu_eyelash_app.data.remote.LitthuNetworkError
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
-import io.ktor.client.call.body
 import io.ktor.client.network.sockets.ConnectTimeoutException
 import io.ktor.client.network.sockets.SocketTimeoutException
 import io.ktor.client.plugins.HttpClientPlugin
@@ -12,7 +11,6 @@ import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.request.HttpRequestPipeline
 import io.ktor.client.request.header
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.HttpResponsePipeline
 import io.ktor.http.HttpStatusCode
 import io.ktor.util.AttributeKey
@@ -63,16 +61,17 @@ class CustomInterceptor(
             }
 
             // After response
-            scope.responsePipeline.intercept(HttpResponsePipeline.Receive) { container ->
+            scope.responsePipeline.intercept(HttpResponsePipeline.Transform) { (_, body) ->
+                val httpResponse = context.response
+                if (httpResponse.status == HttpStatusCode.OK &&
+                    body is BaseResponseEntity &&
+                    body.result != RESULT_OK
+                ) {
+                    throw LitthuNetworkError.LitthuErrorException(
+                        errorResponse = body
+                    )
+                }
                 try {
-                    val response = container.response
-                    if (response is HttpResponse &&
-                        response.status == HttpStatusCode.OK &&
-                        (response.body() as? BaseResponseEntity)?.result != RESULT_OK) {
-                        throw LitthuNetworkError.LitthuErrorException(
-                            errorResponse = response.body()
-                        )
-                    }
                     proceed()
                 } catch (e: Exception) {
                     throw when (e) {

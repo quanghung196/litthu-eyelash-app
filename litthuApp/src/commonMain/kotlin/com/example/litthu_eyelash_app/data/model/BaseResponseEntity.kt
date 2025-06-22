@@ -1,10 +1,15 @@
 package com.example.litthu_eyelash_app.data.model
 
-import kotlinx.serialization.Serializable
+interface BaseResponseEntity {
+    val result: String?
+    val messageID: String?
+    val message: String?
 
-@Serializable
-open class BaseResponseEntity(
-    val result: String? = null,
-    val messageID: String? = null,
-    val message: String? = null,
-)
+    fun isValidResponse(): Boolean {
+        return checkBoundaryValue()
+    }
+
+    fun checkBoundaryValue(): Boolean {
+        return true
+    }
+}
