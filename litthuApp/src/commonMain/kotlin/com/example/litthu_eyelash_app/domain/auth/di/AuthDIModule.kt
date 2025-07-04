@@ -26,6 +26,7 @@ val authModule = module {
             authRepository = get(),
             getSetAccessTokenUseCase = get(),
             getSetRefreshTokenUseCase = get(),
+            getSetUserInfoUseCase = get(),
         )
     }
 }

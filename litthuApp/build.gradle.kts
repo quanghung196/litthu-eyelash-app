@@ -51,9 +51,7 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
 
-            implementation(libs.voyager.navigator)
-            implementation(libs.voyager.transitions)
-            implementation(libs.voyager.koin)
+            implementation(libs.bundles.voyager)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
@@ -88,4 +86,7 @@ kotlin {
             implementation(libs.kotlin.test)
         }
     }
+}
+dependencies {
+    implementation(libs.androidx.ui.unit.android)
 }

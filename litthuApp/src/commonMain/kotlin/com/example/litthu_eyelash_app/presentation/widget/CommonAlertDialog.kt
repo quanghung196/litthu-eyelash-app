@@ -167,6 +167,5 @@ fun CommonAlertDialog(
                 }
             }
         }
-
     }
 }

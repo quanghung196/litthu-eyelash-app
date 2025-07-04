@@ -47,7 +47,6 @@ object AppSpace {
     ) {
         Box(
             modifier = modifier
-                .fillMaxSize()
                 .windowInsetsPadding(WindowInsets.safeDrawing),
             contentAlignment = contentAlignment,
             propagateMinConstraints = propagateMinConstraints,

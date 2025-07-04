@@ -28,8 +28,6 @@ class CustomInterceptor(
 
         private const val ATTRIBUTE_KEY = "CustomInterceptor"
 
-        private const val RESULT_OK = "OK"
-
         override val key: AttributeKey<CustomInterceptor> = AttributeKey(ATTRIBUTE_KEY)
 
         override fun prepare(block: CustomInterceptorConfig.() -> Unit): CustomInterceptor {
@@ -65,7 +63,7 @@ class CustomInterceptor(
                 val httpResponse = context.response
                 if (httpResponse.status == HttpStatusCode.OK &&
                     body is BaseResponseEntity &&
-                    body.result != RESULT_OK
+                    !body.isValidResponse()
                 ) {
                     throw LitthuNetworkError.LitthuErrorException(
                         errorResponse = body

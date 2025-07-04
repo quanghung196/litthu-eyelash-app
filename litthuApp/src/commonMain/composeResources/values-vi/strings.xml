@@ -12,7 +12,10 @@
     <string name="do_not_have_account">Chưa có tài khoản? </string>
     <string name="signup">Đăng ký</string>
     <string name="copyright">© 2025 Litthu Eyelashes. All rights reserved.\nDeveloped by @kwanghunggg</string>
-    <string name="logging_in">Đang đăng nhập...</string>
+
+    <!-- Login Dialog -->
+    <string name="logging_in_dialog_title">Đang đăng nhập...</string>
+    <string name="logging_in_dialog_message">Vui lòng chờ trong khi chúng tôi xác minh thông tin đăng nhập của bạn...</string>
 
     <!-- Dialog Button -->
     <string name="close">Đóng</string>

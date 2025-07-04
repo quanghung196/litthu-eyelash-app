@@ -38,6 +38,11 @@ object AppColors {
 
     object Red {
         val TOMATO = Color(0xFFEF4444)
+        val ACCENT_ORANGE = Color(0xFFFF8A50)
+    }
+
+    object Blue {
+        val PRIMARY_BLUE = Color(0xFF4A90E2)
     }
 }
 

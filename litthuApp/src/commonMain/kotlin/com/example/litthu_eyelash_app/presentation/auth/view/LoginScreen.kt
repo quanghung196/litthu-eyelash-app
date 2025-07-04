@@ -1,4 +1,4 @@
-package com.example.litthu_eyelash_app.presentation.login.view
+package com.example.litthu_eyelash_app.presentation.auth.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -37,9 +37,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import com.example.litthu_eyelash_app.presentation.auth.viewmodel.LoginViewModel
 import com.example.litthu_eyelash_app.presentation.core.LoadingState
 import com.example.litthu_eyelash_app.presentation.core.collectAsState
-import com.example.litthu_eyelash_app.presentation.login.viewmodel.LoginViewModel
 import com.example.litthu_eyelash_app.presentation.theme.AppColors
 import com.example.litthu_eyelash_app.presentation.theme.AppDimens
 import com.example.litthu_eyelash_app.presentation.theme.AppTextSize
@@ -57,7 +57,8 @@ import litthu_eyelash_app.litthuapp.generated.resources.app_name
 import litthu_eyelash_app.litthuapp.generated.resources.copyright
 import litthu_eyelash_app.litthuapp.generated.resources.do_not_have_account
 import litthu_eyelash_app.litthuapp.generated.resources.forgot_password
-import litthu_eyelash_app.litthuapp.generated.resources.logging_in
+import litthu_eyelash_app.litthuapp.generated.resources.logging_in_dialog_message
+import litthu_eyelash_app.litthuapp.generated.resources.logging_in_dialog_title
 import litthu_eyelash_app.litthuapp.generated.resources.login
 import litthu_eyelash_app.litthuapp.generated.resources.login_bg
 import litthu_eyelash_app.litthuapp.generated.resources.password
@@ -79,6 +80,7 @@ fun LoginScreenContent(
     val loadingState by viewModel.collectAsState { it.loadingState }
     val exception by viewModel.collectAsState { it.loginException }
     val isLoginSuccess by viewModel.collectAsState { it.isLoginSuccess }
+    val userInfo by viewModel.collectAsState { it.userInfoDomainEntity }
 
     var phoneNumber by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -104,7 +106,9 @@ fun LoginScreenContent(
 
     LaunchedEffect(isLoginSuccess) {
         if (isLoginSuccess) {
-            onLoginSuccess.invoke()
+            userInfo?.let {
+                onLoginSuccess.invoke()
+            }
         }
     }
 
@@ -268,7 +272,8 @@ fun LoginScreenContent(
 
     if (loadingState == LoadingState.SHOW_LOADING) {
         CommonLoadingDialog(
-            message = stringResource(Res.string.logging_in),
+            title = stringResource(Res.string.logging_in_dialog_title),
+            message = stringResource(Res.string.logging_in_dialog_message),
         )
     }
 

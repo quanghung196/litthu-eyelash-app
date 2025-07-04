@@ -12,7 +12,10 @@
     <string name="do_not_have_account">Don't have an account? </string>
     <string name="signup">Signup</string>
     <string name="copyright">© 2025 Litthu Eyelashes. All rights reserved.\nDeveloped by @kwanghunggg</string>
-    <string name="logging_in">Logging in...</string>
+
+    <!-- Login Dialog -->
+    <string name="logging_in_dialog_title">Logging in...</string>
+    <string name="logging_in_dialog_message">Please wait while we verify your credentials...</string>
 
     <!-- Dialog Button -->
     <string name="close">Close</string>

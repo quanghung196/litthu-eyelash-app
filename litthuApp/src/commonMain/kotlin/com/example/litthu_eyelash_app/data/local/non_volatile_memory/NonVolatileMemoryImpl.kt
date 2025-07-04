@@ -24,6 +24,12 @@ class NonVolatileMemoryImpl(
         defaultValue = ""
     )
 
+    override var userInfo: String by StringPreferenceDelegate(
+        settings = settings,
+        key = NonVolatileKey.USER_INFO,
+        defaultValue = ""
+    )
+
     override fun clearAccessToken() {
         settings.remove(NonVolatileKey.ACCESS_TOKEN)
     }

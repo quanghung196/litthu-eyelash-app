@@ -6,10 +6,18 @@ interface BaseResponseEntity {
     val message: String?
 
     fun isValidResponse(): Boolean {
-        return checkBoundaryValue()
+        return checkBoundaryValue() && isResponseSuccess()
     }
 
     fun checkBoundaryValue(): Boolean {
         return true
+    }
+
+    fun isResponseSuccess(): Boolean {
+        return result == RESULT_OK
+    }
+
+    companion object {
+        private const val RESULT_OK = "OK"
     }
 }

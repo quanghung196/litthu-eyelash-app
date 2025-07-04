@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.litthu_eyelash_app.presentation.theme.AppColors
@@ -21,7 +22,8 @@ import com.example.litthu_eyelash_app.presentation.theme.AppTextSize
 
 @Composable
 fun CommonLoadingDialog(
-    message: String?,
+    title: String? = null,
+    message: String? = null,
 ) {
     Dialog(
         onDismissRequest = { },
@@ -31,6 +33,8 @@ fun CommonLoadingDialog(
         )
     ) {
         Card(
+            modifier = Modifier
+                .padding(AppDimens.DIMEN_24),
             colors = CardDefaults.cardColors(
                 containerColor = AppColors.White.TRANSPARENT_95,
             ),
@@ -48,7 +52,7 @@ fun CommonLoadingDialog(
                     strokeWidth = AppDimens.DIMEN_3,
                 )
 
-                message?.let {
+                title?.let {
                     AppSpace.VerticalSpace.Space16()
 
                     Text(
@@ -56,6 +60,18 @@ fun CommonLoadingDialog(
                         fontSize = AppTextSize.TEXT_SIZE_14,
                         fontWeight = FontWeight.SemiBold,
                         color = AppColors.Black.PURE,
+                    )
+                }
+
+                message?.let {
+                    AppSpace.VerticalSpace.Space8()
+
+                    Text(
+                        text = it,
+                        lineHeight = AppTextSize.TEXT_SIZE_18,
+                        fontSize = AppTextSize.TEXT_SIZE_12,
+                        color = AppColors.Gray.LIGHT_SLATE,
+                        textAlign = TextAlign.Center,
                     )
                 }
             }

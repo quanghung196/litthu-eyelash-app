@@ -12,6 +12,7 @@ okio = "3.11.0"
 settings = "1.3.0"
 voyager = "1.0.0"
 koin = "4.0.4"
+ui-unit-android = "1.8.3"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -30,6 +31,7 @@ compose-material-icons-extended = { module = "org.jetbrains.compose.material:mat
 # voyager
 voyager-navigator = { group = "cafe.adriel.voyager", name = "voyager-navigator", version.ref = "voyager" }
 voyager-transitions = { group = "cafe.adriel.voyager", name = "voyager-transitions", version.ref = "voyager" }
+voyager-tab = { group = "cafe.adriel.voyager", name = "voyager-tab-navigator", version.ref = "voyager" }
 voyager-koin = { group = "cafe.adriel.voyager", name = "voyager-koin", version.ref = "voyager" }
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
@@ -53,6 +55,7 @@ ktor-client-auth = { group = "io.ktor", name = "ktor-client-auth", version.ref =
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 
 settings-multiplatform = { module = "com.russhwolf:multiplatform-settings", version.ref = "settings" }
+androidx-ui-unit-android = { group = "androidx.compose.ui", name = "ui-unit-android", version.ref = "ui-unit-android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -63,3 +66,6 @@ kotlin-cocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref =
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+[bundles]
+voyager = ["voyager-navigator", "voyager-transitions", "voyager-tab", "voyager-koin"]

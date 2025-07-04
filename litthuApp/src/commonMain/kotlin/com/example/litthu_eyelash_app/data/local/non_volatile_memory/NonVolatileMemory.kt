@@ -4,6 +4,7 @@ interface NonVolatileMemory {
     var appLanguage: String
     var accessToken: String
     var refreshToken: String
+    var userInfo: String
 
     fun clearAccessToken()
     fun clearToken()

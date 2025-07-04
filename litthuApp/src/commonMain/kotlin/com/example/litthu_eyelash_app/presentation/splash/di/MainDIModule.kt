@@ -7,6 +7,7 @@ val splashModule = module {
     single {
         SplashViewModel(
             getSetAccessTokenUseCase = get(),
+            getSetUserInfoUseCase = get(),
         )
     }
 }
