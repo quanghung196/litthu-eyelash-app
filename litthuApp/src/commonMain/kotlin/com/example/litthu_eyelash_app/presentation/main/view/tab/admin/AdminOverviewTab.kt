@@ -86,14 +86,14 @@ private fun AdminOverviewContent() {
                 //avatarPainter = yourAvatarPainter
             )
         }
+
+        AppSpace.VerticalSpace.Space24()
+
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
                 .weight(1f)
-                .padding(
-                    horizontal = AppDimens.DIMEN_24,
-                    vertical = AppDimens.DIMEN_12,
-                )
+                .padding(horizontal = AppDimens.DIMEN_24)
         ) {
             OverviewBannerCard()
         }
