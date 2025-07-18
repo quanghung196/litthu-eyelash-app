@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +20,9 @@ import androidx.compose.ui.unit.dp
 object AppSpace {
 
     object VerticalSpace {
+        @Composable
+        fun Space2() = Spacer(modifier = Modifier.height(2.dp))
+
         @Composable
         fun Space4() = Spacer(modifier = Modifier.height(4.dp))
 
@@ -36,6 +40,18 @@ object AppSpace {
 
         @Composable
         fun Space60() = Spacer(modifier = Modifier.height(60.dp))
+    }
+
+    object HorizontalSpace {
+
+        @Composable
+        fun Space12() = Spacer(modifier = Modifier.width(12.dp))
+
+        @Composable
+        fun Space16() = Spacer(modifier = Modifier.width(16.dp))
+
+        @Composable
+        fun Space24() = Spacer(modifier = Modifier.width(24.dp))
     }
 
     @Composable

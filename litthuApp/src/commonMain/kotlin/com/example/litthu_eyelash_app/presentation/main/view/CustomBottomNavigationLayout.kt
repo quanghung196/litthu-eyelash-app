@@ -147,7 +147,7 @@ private fun VoyagerNavItem(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null
             ) { onClick.invoke() }
-            .padding(all = AppDimens.DIMEN_8)
+            .padding(all = AppDimens.DIMEN_12)
             .scale(scale),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
