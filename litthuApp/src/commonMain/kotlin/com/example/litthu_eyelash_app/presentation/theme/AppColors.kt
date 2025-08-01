@@ -29,6 +29,7 @@ object AppColors {
         val TRANSPARENT_80 = Color.White.copy(alpha = 0.8f)
         val TRANSPARENT_90 = Color.White.copy(alpha = 0.9f)
         val TRANSPARENT_95 = Color.White.copy(alpha = 0.95f)
+        val TRANSPARENT = Color.Transparent
 
         val SMOKE = Color(0xFFF3F4F6)
         val MISTY_ROSE = Color(0xFFFEE2E2)
@@ -43,6 +44,7 @@ object AppColors {
 
     object Blue {
         val PRIMARY_BLUE = Color(0xFF4A90E2)
+        val BLUE_BERRY = Color(0xFF4285F4)
     }
 }
 

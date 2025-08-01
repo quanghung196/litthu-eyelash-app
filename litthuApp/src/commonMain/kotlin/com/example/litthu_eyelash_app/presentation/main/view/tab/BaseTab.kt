@@ -8,3 +8,4 @@ interface VoyagerNavTab : Tab {
     val selectedIcon: ImageVector
     val badge: String?
 }
+

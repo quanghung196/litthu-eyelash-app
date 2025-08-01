@@ -15,43 +15,46 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import com.example.litthu_eyelash_app.presentation.theme.AppDimens
 
 object AppSpace {
 
     object VerticalSpace {
         @Composable
-        fun Space2() = Spacer(modifier = Modifier.height(2.dp))
+        fun Space2() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_2))
 
         @Composable
-        fun Space4() = Spacer(modifier = Modifier.height(4.dp))
+        fun Space4() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_4))
 
         @Composable
-        fun Space8() = Spacer(modifier = Modifier.height(8.dp))
+        fun Space8() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_8))
 
         @Composable
-        fun Space16() = Spacer(modifier = Modifier.height(16.dp))
+        fun Space12() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_12))
 
         @Composable
-        fun Space20() = Spacer(modifier = Modifier.height(20.dp))
+        fun Space16() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_16))
 
         @Composable
-        fun Space24() = Spacer(modifier = Modifier.height(24.dp))
+        fun Space20() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_20))
 
         @Composable
-        fun Space60() = Spacer(modifier = Modifier.height(60.dp))
+        fun Space24() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_24))
+
+        @Composable
+        fun Space60() = Spacer(modifier = Modifier.height(AppDimens.DIMEN_60))
     }
 
     object HorizontalSpace {
 
         @Composable
-        fun Space12() = Spacer(modifier = Modifier.width(12.dp))
+        fun Space12() = Spacer(modifier = Modifier.width(AppDimens.DIMEN_12))
 
         @Composable
-        fun Space16() = Spacer(modifier = Modifier.width(16.dp))
+        fun Space16() = Spacer(modifier = Modifier.width(AppDimens.DIMEN_16))
 
         @Composable
-        fun Space24() = Spacer(modifier = Modifier.width(24.dp))
+        fun Space24() = Spacer(modifier = Modifier.width(AppDimens.DIMEN_24))
     }
 
     @Composable
