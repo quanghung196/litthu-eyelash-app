@@ -1,4 +1,4 @@
-package com.example.litthu_eyelash_app.presentation.main.view.tab.admin.overview.widget
+package com.example.litthu_eyelash_app.presentation.main.view.tab.admin.home.widget
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,62 +14,53 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import com.example.litthu_eyelash_app.presentation.theme.AppColors
 import com.example.litthu_eyelash_app.presentation.theme.AppDimens
 import com.example.litthu_eyelash_app.presentation.theme.AppTextSize
 import com.example.litthu_eyelash_app.presentation.widget.AppSpace
 
-data class Appointment(
+data class TopService(
     val avatarRes: Int? = null, // resource id của ảnh avatar
     val name: String,
-    val phoneNumber: String,
-    val isDeposited: String,
-    val time: String,
-    val timeLeft: String
+    val totalBooking: Int,
+    val totalIncome: String,
 )
 
-val appointments = listOf(
-    Appointment(
-        name = "Sarah Johnson",
-        phoneNumber = "0903261998",
-        isDeposited = "Deposited",
-        time = "10:30 AM",
-        timeLeft = "in 45 min"
+val topServices = listOf(
+    TopService(
+        name = "Service 1",
+        totalBooking = 30,
+        totalIncome = "10M",
     ),
-    Appointment(
-        name = "Michael Torres",
-        phoneNumber = "0981002490",
-        isDeposited = "No Deposit",
-        time = "11:45 AM",
-        timeLeft = "in 2 hours"
+    TopService(
+        name = "Service 2",
+        totalBooking = 25,
+        totalIncome = "9.5M",
     ),
-    Appointment(
-        name = "Dr Strange",
-        phoneNumber = "0904561975",
-        isDeposited = "No Deposit",
-        time = "12:45 AM",
-        timeLeft = "in 3 hours"
+    TopService(
+        name = "Service 3",
+        totalBooking = 20,
+        totalIncome = "8M",
     )
 )
 
 @Composable
-fun TodayAppointmentsWidget() {
+fun TopServicesWidget() {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Today's Appointments",
+            text = "Top Services",
             color = AppColors.Black.PURE,
             fontWeight = FontWeight.SemiBold,
-            fontSize = AppTextSize.TEXT_SIZE_16,
+            fontSize = AppTextSize.TEXT_SIZE_14,
             modifier = Modifier.weight(1f),
         )
         Text(
             text = "See all",
-            fontSize = AppTextSize.TEXT_SIZE_12,
+            fontSize = AppTextSize.TEXT_SIZE_10,
             color = AppColors.Gray.LIGHT_SLATE,
         )
     }
@@ -83,7 +74,7 @@ fun TodayAppointmentsWidget() {
         shape = RoundedCornerShape(AppDimens.DIMEN_8),
         elevation = CardDefaults.cardElevation(defaultElevation = AppDimens.DIMEN_1)
     ) {
-        appointments.forEachIndexed { index, appointment ->
+        topServices.forEachIndexed { index, service ->
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -91,7 +82,7 @@ fun TodayAppointmentsWidget() {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Card(
-                    modifier = Modifier.size(AppDimens.DIMEN_40),
+                    modifier = Modifier.size(AppDimens.DIMEN_36),
                     colors = CardDefaults.cardColors(containerColor = AppColors.Gray.LIGHT_SLATE),
                     shape = CircleShape,
                     elevation = CardDefaults.cardElevation(defaultElevation = AppDimens.DIMEN_0)
@@ -105,14 +96,19 @@ fun TodayAppointmentsWidget() {
                     modifier = Modifier.weight(1f)
                 ) {
                     Text(
-                        text = appointment.name,
+                        text = service.name,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = AppTextSize.TEXT_SIZE_14,
+                        lineHeight = AppTextSize.TEXT_SIZE_16,
                         color = AppColors.Black.PURE,
                     )
+
+                    AppSpace.VerticalSpace.Space4()
+
                     Text(
-                        text = "${appointment.phoneNumber} • ${appointment.isDeposited}",
-                        fontSize = AppTextSize.TEXT_SIZE_12,
+                        text = "Booked: ${service.totalBooking}",
+                        fontSize = AppTextSize.TEXT_SIZE_10,
+                        lineHeight = AppTextSize.TEXT_SIZE_12,
                         color = AppColors.Gray.LIGHT_SLATE,
                     )
                 }
@@ -120,24 +116,29 @@ fun TodayAppointmentsWidget() {
                     horizontalAlignment = Alignment.End
                 ) {
                     Text(
-                        text = appointment.time,
+                        text = service.totalIncome,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = AppTextSize.TEXT_SIZE_14,
+                        lineHeight = AppTextSize.TEXT_SIZE_16,
                         color = AppColors.Black.PURE,
                     )
+
+                    AppSpace.VerticalSpace.Space4()
+
                     Text(
-                        text = appointment.timeLeft,
-                        fontSize = AppTextSize.TEXT_SIZE_12,
+                        text = "this month",
+                        fontSize = AppTextSize.TEXT_SIZE_10,
+                        lineHeight = AppTextSize.TEXT_SIZE_12,
                         color = AppColors.Gray.LIGHT_SLATE,
                     )
                 }
             }
 
-            if (index != appointments.lastIndex) {
+            if (index != topStaffs.lastIndex) {
                 HorizontalDivider(
                     modifier = Modifier.padding(start = AppDimens.DIMEN_36),
                     thickness = AppDimens.DIMEN_0_5,
-                    color = Color.LightGray
+                    color = AppColors.Gray.LIGHT,
                 )
             }
         }

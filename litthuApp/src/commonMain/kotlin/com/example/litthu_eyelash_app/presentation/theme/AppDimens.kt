@@ -14,6 +14,7 @@ object AppDimens {
     val DIMEN_12 = 12.dp
     val DIMEN_14 = 14.dp
     val DIMEN_16 = 16.dp
+    val DIMEN_18 = 18.dp
     val DIMEN_20 = 20.dp
     val DIMEN_22 = 22.dp
     val DIMEN_24 = 24.dp
@@ -27,6 +28,7 @@ object AppDimens {
     val DIMEN_48 = 48.dp
     val DIMEN_55 = 55.dp
     val DIMEN_60 = 60.dp
+    val DIMEN_80 = 80.dp
     val DIMEN_100 = 100.dp
 }
 

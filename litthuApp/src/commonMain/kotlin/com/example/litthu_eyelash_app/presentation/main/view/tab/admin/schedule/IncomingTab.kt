@@ -1,37 +1,27 @@
 package com.example.litthu_eyelash_app.presentation.main.view.tab.admin.schedule
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import cafe.adriel.voyager.navigator.tab.Tab
-import cafe.adriel.voyager.navigator.tab.TabOptions
-
-object IncomingTab : Tab {
-    override val options: TabOptions
-        @Composable
-        get() = TabOptions(
-            index = 0u,
-            title = "Incoming",
-            icon = null,
-        )
-
-    @Composable
-    override fun Content() {
-        IncomingTabContent()
-    }
-}
+import com.example.litthu_eyelash_app.presentation.mockdata.MOCK_APPOINTMENT_SECTION
+import com.example.litthu_eyelash_app.presentation.schedule.view.FilterControlsWidget
+import com.example.litthu_eyelash_app.presentation.schedule.view.ScheduleListWidget
 
 @Composable
 private fun IncomingTabContent() {
-    Box(
+    Column(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
     ) {
-        Text(
-            text = "This is admin Incoming tab"
+        FilterControlsWidget(
+            onTodayClick = { /* Handle today selection */ },
+            onStaffClick = { /* Handle staff selection */ },
+            onFilterClick = { /* Handle filter action */ }
+        )
+
+        ScheduleListWidget(
+            onCallClick = {},
+            appointments = MOCK_APPOINTMENT_SECTION,
         )
     }
 }

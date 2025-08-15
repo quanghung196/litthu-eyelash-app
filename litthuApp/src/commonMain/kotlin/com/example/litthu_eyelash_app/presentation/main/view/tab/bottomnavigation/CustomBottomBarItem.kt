@@ -1,11 +1,11 @@
 package com.example.litthu_eyelash_app.presentation.main.view.tab.bottomnavigation
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -18,7 +18,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import com.example.litthu_eyelash_app.presentation.main.view.tab.VoyagerNavTab
 import com.example.litthu_eyelash_app.presentation.theme.AppColors
 import com.example.litthu_eyelash_app.presentation.theme.AppDimens
-import com.example.litthu_eyelash_app.presentation.widget.AppSpace
+import com.example.litthu_eyelash_app.presentation.theme.AppTextSize
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -37,22 +37,21 @@ fun RowScope.CustomBottomBarItem(tab: VoyagerNavTab) {
             ) {
                 tabNavigator.current = tab
             }
-            .padding(vertical = AppDimens.DIMEN_8),
+            .background(AppColors.White.PURE),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Icon(
             imageVector = if (isSelected) tab.selectedIcon else tab.icon,
             contentDescription = tab.options.title,
             tint = if (isSelected) AppColors.Gray.MID_NIGHT_SLATE else AppColors.Gray.LIGHT_SLATE,
-            modifier = Modifier.size(AppDimens.DIMEN_28)
+            modifier = Modifier.size(AppDimens.DIMEN_24)
         )
-
-        AppSpace.VerticalSpace.Space2()
 
         Text(
             text = tab.options.title,
             color = if (isSelected) AppColors.Gray.MID_NIGHT_SLATE else AppColors.Gray.LIGHT_SLATE,
             style = MaterialTheme.typography.labelMedium,
+            fontSize = AppTextSize.TEXT_SIZE_10,
             maxLines = 1
         )
     }

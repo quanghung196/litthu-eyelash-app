@@ -20,4 +20,11 @@
     <!-- Dialog Button -->
     <string name="close">Đóng</string>
     <string name="retry">Thử lại</string>
+
+    <!-- Common -->
+    <string name="default_pull_to_refresh">Kéo để làm mới</string>
+    <string name="default_release_to_refresh">Thả để làm mới</string>
+
+    <!-- Schedule Screen -->
+    <string name="no_appointments_left">Không còn lịch hẹn nào khác\nBấm vào đây để quay lại đầu trang</string>
 </resources>

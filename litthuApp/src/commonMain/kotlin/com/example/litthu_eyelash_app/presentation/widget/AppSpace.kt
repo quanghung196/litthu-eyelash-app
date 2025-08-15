@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -48,6 +50,15 @@ object AppSpace {
     object HorizontalSpace {
 
         @Composable
+        fun RowScope.SpaceWeight1() = Spacer(modifier = Modifier.weight(1f))
+
+        @Composable
+        fun Space4() = Spacer(modifier = Modifier.width(AppDimens.DIMEN_4))
+
+        @Composable
+        fun Space8() = Spacer(modifier = Modifier.width(AppDimens.DIMEN_8))
+
+        @Composable
         fun Space12() = Spacer(modifier = Modifier.width(AppDimens.DIMEN_12))
 
         @Composable
@@ -67,6 +78,22 @@ object AppSpace {
         Box(
             modifier = modifier
                 .windowInsetsPadding(WindowInsets.safeDrawing),
+            contentAlignment = contentAlignment,
+            propagateMinConstraints = propagateMinConstraints,
+            content = content,
+        )
+    }
+
+    @Composable
+    fun BoxSafeSpaceForSystemBar(
+        modifier: Modifier = Modifier,
+        contentAlignment: Alignment = Alignment.TopStart,
+        propagateMinConstraints: Boolean = false,
+        content: @Composable BoxScope.() -> Unit,
+    ) {
+        Box(
+            modifier = modifier
+                .windowInsetsPadding(WindowInsets.navigationBars),
             contentAlignment = contentAlignment,
             propagateMinConstraints = propagateMinConstraints,
             content = content,

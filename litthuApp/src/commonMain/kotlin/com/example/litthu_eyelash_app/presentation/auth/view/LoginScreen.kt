@@ -3,6 +3,7 @@ package com.example.litthu_eyelash_app.presentation.auth.view
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -235,7 +236,10 @@ fun LoginScreenContent(
             text = stringResource(Res.string.forgot_password),
             fontSize = AppTextSize.TEXT_SIZE_14,
             color = AppColors.White.TRANSPARENT_80,
-            modifier = Modifier.clickable {
+            modifier = Modifier.clickable(
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+            ) {
                 // TODO
             }
         )
@@ -253,7 +257,10 @@ fun LoginScreenContent(
                 fontSize = AppTextSize.TEXT_SIZE_14,
                 fontWeight = FontWeight.SemiBold,
                 color = Color.White,
-                modifier = Modifier.clickable {
+                modifier = Modifier.clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() },
+                ) {
                     // TODO
                 }
             )

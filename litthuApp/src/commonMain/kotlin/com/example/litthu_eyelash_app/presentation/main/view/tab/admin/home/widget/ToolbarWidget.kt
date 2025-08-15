@@ -1,4 +1,4 @@
-package com.example.litthu_eyelash_app.presentation.main.view.tab.admin.overview.widget
+package com.example.litthu_eyelash_app.presentation.main.view.tab.admin.home.widget
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

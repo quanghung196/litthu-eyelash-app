@@ -39,12 +39,18 @@ object AppColors {
 
     object Red {
         val TOMATO = Color(0xFFEF4444)
-        val ACCENT_ORANGE = Color(0xFFFF8A50)
     }
 
-    object Blue {
-        val PRIMARY_BLUE = Color(0xFF4A90E2)
-        val BLUE_BERRY = Color(0xFF4285F4)
+    object AppointmentBadge {
+        val TYPE_NEW_BG = Color(0xFFDFF5E1)
+        val TYPE_NEW_TEXT = Color(0xFF3B7A57)
+        val TYPE_TOUCH_UP_BG = Color(0xFFFFF4CC)
+        val TYPE_TOUCH_UP_TEXT = Color(0xFF8A6D1D)
+
+        val STATUS_DEPOSITED_BG = Color(0xFFDBEAFE)
+        val STATUS_DEPOSITED_TEXT = Color(0xFF1E3A8A)
+        val STATUS_NO_DEPOSIT_BG = Gray.LIGHT
+        val STATUS_NO_DEPOSIT_TEXT = White.PURE
     }
 }
 

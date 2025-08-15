@@ -18,8 +18,12 @@ class MainViewModel(
         getUserInfo()
     }
 
-    private fun getUserInfo(): UserInfoDomainEntity? {
-        return getSetUserInfoUseCase.get().also {
+    private fun getUserInfo() {
+        getSetUserInfoUseCase.get()?.let {
+            dispatchState {
+                copy(userInfo = it)
+            }
+        } ?: run {
             dispatchState {
                 copy(userInfo = mockUserInfo)
             }
